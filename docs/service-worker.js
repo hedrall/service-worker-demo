@@ -9,6 +9,8 @@ addEventListener('install', e => {
   // 初回のみ呼ばれる
   console.log('install event');
   console.log(e);
+  console.log(Object.keys(e));
+  console.log(e.waitUntil);
 
   // ファイルとキャッシュしてみる
   e.waitUntil(async () => {

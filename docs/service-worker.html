@@ -7,7 +7,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', async () => {
-        const registration = await navigator.serviceWorker.register('/service-worker.js').catch(e => {
+        const registration = await navigator.serviceWorker.register('/service-worker-demo/service-worker.js').catch(e => {
           console.error('service worker 登録失敗');
           throw e;
         });

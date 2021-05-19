@@ -2,6 +2,7 @@ const CACHE_NAME = 'my-test-cache';
 const URLS_TO_CACHE = [
   './assets/for-cache.js',
   './assets/for-cache.css',
+  './not-exist.css',
 ]
 
 addEventListener('install', e => {

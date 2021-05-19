@@ -12,9 +12,9 @@ addEventListener('install', e => {
 
   // ファイルとキャッシュしてみる
   e.waitUntil(async () => {
-    const cache = await caches.open(CACHE_NAME);
     console.log('キャッシュを開く');
+    const cache = await caches.open(CACHE_NAME);
+    console.log('キャッシュを登録');
     await cache.addAll(URLS_TO_CACHE);
-    console.log('キャッシュ完了');
   })
 })

@@ -25,9 +25,11 @@ addEventListener('install', function (event) {
 addEventListener('fetch', (event) => {
   console.log('fetchイベント');
   console.log('event.request', event.request);
+  console.log('event.request', event.request);
   event.respondWith(
     caches.match(event.request).then(function (response) {
       if (response) {
+        console.log('キャッシュから返却')
         return response;
       }
       return fetch(event.request);

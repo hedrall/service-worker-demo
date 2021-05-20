@@ -1,17 +1,14 @@
 const CACHE_NAME = 'my-test-cache';
 const URLS_TO_CACHE = [
-  './assets/for-cache.js',
-  './assets/for-cache.css',
-  './not-exist.css',
+  '/service-worker-demo/assets/for-cache.js',
+  // './assets/for-cache.css',
+  // './not-exist.css',
 ]
 
 addEventListener('install', function (event) {
   // 2. サービスワーカーをインストール
   // 初回のみ呼ばれる
   console.log('install event');
-  console.log(event);
-  console.log(Object.keys(event));
-  console.log(event.waitUntil);
 
   // ファイルとキャッシュしてみる
   // event.waitUntil(async () => {

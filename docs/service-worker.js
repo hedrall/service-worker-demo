@@ -5,24 +5,32 @@ const URLS_TO_CACHE = [
   // './not-exist.css',
 ]
 
+// 初回のインストール時のイベント
 addEventListener('install', function (event) {
   // 2. サービスワーカーをインストール
   // 初回のみ呼ばれる
-  console.log('install event');
+  console.log('installイベント');
 
-  // ファイルとキャッシュしてみる
-  // event.waitUntil(async () => {
-  //   console.log('キャッシュを開く');
-  //   const cache = await caches.open(CACHE_NAME);
-  //   console.log('キャッシュを登録');
-  //   await cache.addAll(URLS_TO_CACHE);
-  // })
+  // ファイルをキャッシュしてみる
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(function(cache) {
-        console.log('Opened cache');
-        console.log('URLS_TO_CACHE', URLS_TO_CACHE);
+        console.log('以下をキャッシュします。', URLS_TO_CACHE);
         return cache.addAll(URLS_TO_CACHE);
       })
   );
-})
+});
+
+// インストール後、移動・更新などを行った際に受け取る
+addEventListener('fetch', (event) => {
+  console.log('fetchイベント');
+  console.log('event.request', event.request);
+  event.respondWith(
+    caches.match(event.request).then(function (response) {
+      if (response) {
+        return response;
+      }
+      return fetch(event.request);
+    })
+  )
+});

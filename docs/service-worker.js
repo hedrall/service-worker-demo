@@ -24,12 +24,10 @@ addEventListener('install', function (event) {
 // インストール後、移動・更新などを行った際に受け取る
 addEventListener('fetch', (event) => {
   console.log('fetchイベント');
-  console.log('event.request', event.request);
-  console.log('event.request', event.request);
   event.respondWith(
     caches.match(event.request).then(function (response) {
       if (response) {
-        console.log('キャッシュから返却')
+        console.warn('キャッシュから返却', event.request.url)
         return response;
       }
       return fetch(event.request);
